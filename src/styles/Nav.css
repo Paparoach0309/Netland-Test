@@ -1,0 +1,29 @@
+.nav-list {
+    display: flex;
+    justify-content: space-between;
+    background-color: #1c2a8a;
+    color: #dfdddd;
+}
+
+.nav-list-name {
+    font-size: 32px;
+}
+
+.nav-list-item {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 28px;
+}
+
+.nav-list a {
+    text-decoration: none;
+    color: #dfdddd;
+    text-align: center;
+    padding: 0%;
+}
+
+.nav-list a:hover {
+    box-shadow: inset 2px 2px 5px rgba(121, 198, 126, 0.5);
+}
