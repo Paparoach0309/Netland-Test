@@ -23,16 +23,23 @@ const Login = () => {
 		fetch('http://151.115.37.31:3001/api/v1/intercom/login', {
 		  method: 'POST',
 		  headers: {
-			'Content-Type': 'application/json',
+			'Content-Type': 'application/json;charset=utf-8',
 		  },
 		  body: JSON.stringify({
-			name: userName, 
+			username: userName, 
+			password: password,
 		  }),
 		})
-		  .then((res) => res.json())
-		  .catch((err) => console.log('error'))
+		  .then((response) => {
+			  return response.json();
+		  })
+		  .then(result => {
+			localStorage.setItem('auth', result);
+		});
 	  };
 
+            
+	  
 	const userNameHandler = (e) => {
 		setUserName(e.target.value);
 		if (e.target.value.length < 2 || e.target.value.length >30) {
@@ -65,7 +72,7 @@ const Login = () => {
 
 	return (
 		<div className="Login">
-			<form onSubmit={saveData()}>
+			<form onSubmit={saveData}>
 				{(userNameDirty && userNameError) && <div style={{color:'red'}}>{userNameError}</div>}
 				<input onChange={e => userNameHandler(e)} value={userName} onBlur={e =>handlerBlur(e)} name='userName' type='text' placeholder='Login'/>
 				{(passwordDirty && passwordError) && <div style={{color:'red'}}>{passwordError}</div>}
